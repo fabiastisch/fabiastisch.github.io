@@ -1,0 +1,47 @@
+$activeColor: #1e82d9;
+
+.display{
+  position: absolute;
+  right: 50%;
+ // background: deepskyblue;
+  display: flex;
+  width: 50vh;
+  height: 50vh;
+  flex-direction: column;
+  flex: 1;
+  border: 2px solid black;
+}
+
+.row{
+  flex: 1;
+  display: flex;
+}
+.cell{
+  cursor: pointer;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid black;
+  &.top{
+    border-top: 2px solid black;
+  }
+  &.left{
+    border-left: 2px solid black;
+  }
+  &.right{
+    border-right: 2px solid black;
+  }
+  &.bot{
+    border-bottom: 2px solid black;
+  }
+  &.active{
+    background: $activeColor;
+  }
+
+}
+.value{
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 1.5em;
+}
+

@@ -1,0 +1,16 @@
+<p>sudoku-grid works!</p>
+
+<div class="display">
+  <div class="row" *ngFor="let row of sudoku; index as rowI"
+       >
+    <div class="cell" *ngFor="let cell of row; index as colI"
+         [class.top]="rowI % 3 == 0"
+         [class.bot]="rowI % 3 == 2"
+         [class.left]="colI % 3 == 0"
+         [class.right]="colI % 3 == 2"
+    >
+
+      <div class="value">{{cell}}</div>
+    </div>
+  </div>
+</div>
