@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {RouterModule} from '@angular/router';
+import { SudokuComponent } from './sudoku/sudoku.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SudokuComponent
   ],
     imports: [
         BrowserModule,
-        RouterModule
+        RouterModule,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]
