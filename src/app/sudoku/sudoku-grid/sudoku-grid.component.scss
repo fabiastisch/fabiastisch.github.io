@@ -1,4 +1,6 @@
 $activeColor: #1e82d9;
+$highlightLightColor: #c7c8c4;
+$highlightHardColor: #969793;
 
 .display{
   position: absolute;
@@ -38,6 +40,13 @@ $activeColor: #1e82d9;
   &.active{
     background: $activeColor;
     font-size: larger;
+  }
+  &.highlightLight{
+    background: $highlightLightColor;
+    background: #c7c8c4;
+  }
+  &.highlightHard{
+    background: $highlightHardColor;
   }
 
 }

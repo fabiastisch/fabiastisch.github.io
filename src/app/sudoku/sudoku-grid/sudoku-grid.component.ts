@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Cell, Sudoku} from '../sudoku';
 
 @Component({
@@ -15,7 +15,7 @@ export class SudokuGridComponent implements OnInit {
 
   ngOnInit(): void {
     for (let i = 0; i < 9; i++) {
-      const row = new Array();
+      const row = [];
       for (let j = 1; j <= 9; j++) {
         const cell = new Cell(j);
         row.push(cell);
@@ -25,7 +25,22 @@ export class SudokuGridComponent implements OnInit {
   }
 
   onClick(cell: Cell, rowI: number, colI: number): void {
+    this.sudoku.forEach(row => row.forEach(cel => {
+      cel.isActive = false;
+      cel.highlightLight = false;
+      cel.highlightHard = false;
+    }));
     cell.isActive = true;
+    this.sudoku[rowI].forEach(c => {
+      if (c !== cell) {
+        c.highlightLight = true;
+      }
+    });
+    this.sudoku.forEach(row => {
+      if (row[colI] !== cell) {
+        row[colI].highlightLight = true;
+      }
+    });
   }
 
 

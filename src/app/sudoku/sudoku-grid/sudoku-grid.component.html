@@ -9,6 +9,8 @@
          [class.left]="colI % 3 == 0"
          [class.right]="colI % 3 == 2"
          [class.active]= cell.isActive
+         [class.highlightLight] = cell.highlightLight
+         [class.highlightHard] = cell.highlightHard
          (click)="onClick(cell, rowI, colI)" >
 
       <div class="value">{{cell.value}}</div>

@@ -4,6 +4,8 @@ export class Cell {
   value: number;
   readonly?: boolean;
   isActive = false;
+  highlightLight = false;
+  highlightHard = false;
 
   constructor(value?: number) {
     if (value !== null) {
