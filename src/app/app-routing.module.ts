@@ -5,7 +5,8 @@ import {SudokuComponent} from './sudoku/sudoku.component';
 
 
 const routes: Routes = [
-  { path: 'sudoku', component: SudokuComponent }
+  { path: 'sudoku', component: SudokuComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/sudoku' }
 ];
 
 @NgModule({

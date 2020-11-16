@@ -4,11 +4,13 @@ $highlightHardColor: #969793;
 
 .display{
   position: absolute;
-  right: 50%;
- // background: deepskyblue;
-  display: flex;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 50vh;
   height: 50vh;
+  display: flex;
   flex-direction: column;
   flex: 1;
   border: 2px solid black;
