@@ -8,9 +8,10 @@
          [class.bot]="rowI % 3 == 2"
          [class.left]="colI % 3 == 0"
          [class.right]="colI % 3 == 2"
-    >
+         [class.active]= cell.isActive
+         (click)="onClick(cell, rowI, colI)" >
 
-      <div class="value">{{cell}}</div>
+      <div class="value">{{cell.value}}</div>
     </div>
   </div>
 </div>

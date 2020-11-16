@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Sudoku} from '../sudoku';
+import {Cell, Sudoku} from '../sudoku';
 
 @Component({
   selector: 'app-sudoku-grid',
@@ -16,11 +16,16 @@ export class SudokuGridComponent implements OnInit {
   ngOnInit(): void {
     for (let i = 0; i < 9; i++) {
       const row = new Array();
-      for (let j = 0; j < 9; j++) {
-        row.push(i);
+      for (let j = 1; j <= 9; j++) {
+        const cell = new Cell(j);
+        row.push(cell);
       }
       this.sudoku.push(row);
     }
+  }
+
+  onClick(cell: Cell, rowI: number, colI: number): void {
+    cell.isActive = true;
   }
 
 

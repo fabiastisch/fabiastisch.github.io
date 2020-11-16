@@ -37,6 +37,7 @@ $activeColor: #1e82d9;
   }
   &.active{
     background: $activeColor;
+    font-size: larger;
   }
 
 }
