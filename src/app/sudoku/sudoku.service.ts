@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Cell, Sudoku} from './sudoku';
 import {SudokuGenerator} from './Sudoku-generator';
+import {SudokuSolver} from '@jlguenego/sudoku-generator';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,27 @@ export class SudokuService {
   }
 
   public generateSudoku(): Sudoku {
-    return SudokuGenerator.generateSudoku();
+    let grid = SudokuSolver.generate();
+
+    console.log(grid);
+    const x = 55;
+    console.log(x);
+    grid = SudokuSolver.carve(grid, x);
+    const sudoku: Sudoku = [];
+    grid.forEach(row => {
+      const r = [];
+      row.forEach(cell => {
+        if (cell === 0) {
+          r.push(new Cell());
+        } else {
+          r.push(new Cell(cell));
+        }
+      });
+      sudoku.push(r);
+
+    });
+
+    return sudoku;
   }
 
   private isValid(sudoku: Sudoku): boolean {

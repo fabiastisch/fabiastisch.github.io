@@ -9,19 +9,118 @@ export class SudokuGenerator {
     const sudoku = [];
     const numCols = Math.sqrt(this.cells);
     const numRows = numCols;
-    sudoku[0] = this.shuffleArray(Object.assign([], this.numbers));
-    console.log(sudoku[0].map(x => x.value));
-    for (let row = 1; row < numRows; row++) {
-      sudoku[row] = this.createRow(sudoku);
-    }
-    return sudoku;
+
+    // console.log(sudoku[0].map(x => x.value));
+    return this.fillRest();
+
   }
 
+  private static fillRest(): Sudoku {
+    const row = this.shuffleArray(Object.assign([], this.numbers));
+    const grid = [];
+    grid[0] = row;
+    for (let i = 1; i < 9; i++) {
+      grid[i] = [];
+      for (let j = 0; j < 9; j++) {
+        grid[i][j] = new Cell();
+      }
+    }
+    this.fill(grid);
+    return grid;
+  }
+
+  private static fill(grid: Cell[][]): void {
+    console.log(grid);
+    for (let i = 0; i < 10; i++){
+      this.updateGrid(grid);
+      this.setNote(grid);
+    }
+
+    /*for (let row = 0; row < grid.length; row++){
+      for (let col = 0; col < grid[row].length; col++){
+        if (grid[row][col].notes.length === 1){
+
+        }
+      }
+    }*/
+  }
+
+  private static setNote(grid: Cell[][]): void {
+    const list = [];
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[row].length; col++) {
+        const cell = grid[row][col];
+        if (cell.notes.length === 1) {
+          cell.value = cell.notes[0];
+          cell.notes = [];
+          return;
+        }else if (cell.notes.length >= 1){
+          list.push([row, col]);
+        }
+      }
+    }
+
+  }
+
+
+  private static updateGrid(grid: Cell[][]): void {
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[row].length; col++) {
+        // @ts-ignore
+        if (grid[row][col].value) {
+          this.setGridList(grid, row, col, grid[row][col].value);
+        }
+      }
+    }
+  }
+
+  private static setGridList(grid: Cell[][], row: number, col: number, num: number): void {
+    // Set Row list
+    for (let colI = 0; colI < grid[row].length; colI++) {
+      if (!grid[row][colI].value && colI !== col - 1 && colI !== col + 1) {
+        grid[row][colI].notes.push(num);
+      }
+    }
+    // Set Column list
+    for (let rowI = 0; rowI < grid.length; rowI++) {
+      if (!grid[rowI][col].value && rowI !== row - 1 && rowI !== row + 1) {
+        grid[rowI][col].notes.push(num);
+      }
+    }
+    // Set square list
+    const minRow = row - (row % 3);
+    const maxRow = minRow + (row % 3);
+    const minCol = col - (col % 3);
+    const maxCol = minCol + (col % 3);
+    for (let rowI = minRow; rowI < maxRow; rowI++) {
+      for (let colI = minCol; colI < maxCol; colI++) {
+        if (!grid[rowI][colI].value) {
+          grid[rowI][colI].notes.push(num);
+        }
+      }
+    }
+  }
+
+
+  private static shuffleArray(array: number[]): Cell[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    const cells = [];
+    array.forEach(a => {
+      cells.push(new Cell(a));
+    });
+    return cells;
+  }
+
+
+  /*
   private static canset(num: number, column: number, numbers: number[], array: Cell[][]): boolean {
-    /*if (Math.floor(Math.random() + 0.5) === 1) {
+    /!*if (Math.floor(Math.random() + 0.5) === 1) {
 
       return false;
-    }*/
+    }*!/
 
     // Check if Column contains the number
     for (let row = 0; row < array.length; row++) {
@@ -49,10 +148,10 @@ export class SudokuGenerator {
         }
       }
     }
-    /*nums.some(cell => cell === num) || array.some((coloum: Cell[]) => coloum[col].value === num)) {
+    /!*nums.some(cell => cell === num) || array.some((coloum: Cell[]) => coloum[col].value === num)) {
       col--;
       continue;
-    }*/
+    }*!/
     return true;
   }
 
@@ -97,17 +196,6 @@ export class SudokuGenerator {
     });
     console.log(cells.map(x => x.value), iter);
     return cells;
-  }
+  }*/
 
-  private static shuffleArray(array: number[]): Cell[] {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    const cells = [];
-    array.forEach(a => {
-      cells.push(new Cell(a));
-    });
-    return cells;
-  }
 }
