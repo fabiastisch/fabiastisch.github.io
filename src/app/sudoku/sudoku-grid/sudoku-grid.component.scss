@@ -50,6 +50,9 @@ $highlightHardColor: #969793;
   &.highlightHard{
     background: $highlightHardColor;
   }
+  &.writeable{
+    color: darkblue;
+  }
 
 }
 .value{

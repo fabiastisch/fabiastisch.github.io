@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Cell, Sudoku} from '../sudoku';
 import {SudokuService} from '../sudoku.service';
 
@@ -9,6 +9,7 @@ import {SudokuService} from '../sudoku.service';
 })
 export class SudokuGridComponent implements OnInit {
   public sudoku: Sudoku;
+  private selectedCell: Cell;
 
   constructor(private sudokuService: SudokuService) {
     this.sudoku = [];
@@ -24,6 +25,18 @@ export class SudokuGridComponent implements OnInit {
       }
       this.sudoku.push(row);
     }*/
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  private onKeyDown(event: KeyboardEvent): void {
+    const num = parseInt(event.key, 10);
+    if (this.selectedCell === undefined || this.selectedCell === null){
+      return;
+    }
+    if (this.selectedCell.readonly){
+      return;
+    }
+    this.selectedCell.value = num;
   }
 
   onClick(cell: Cell, rowI: number, colI: number): void {
@@ -43,6 +56,7 @@ export class SudokuGridComponent implements OnInit {
         row[colI].highlightLight = true;
       }
     });
+    this.selectedCell = cell;
   }
 
 

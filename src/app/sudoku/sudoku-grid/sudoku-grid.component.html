@@ -10,6 +10,7 @@
          [class.active]= cell.isActive
          [class.highlightLight] = cell.highlightLight
          [class.highlightHard] = cell.highlightHard
+         [class.writeable] = !cell.readonly
          (click)="onClick(cell, rowI, colI)" >
 
       <div class="value">{{cell.value}}</div>

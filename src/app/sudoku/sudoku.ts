@@ -2,7 +2,7 @@ export type Sudoku = Cell[][];
 
 export class Cell {
   value: number;
-  readonly?: boolean;
+  readonly: boolean;
   notes: number[];
   isActive = false;
   highlightLight = false;
@@ -10,7 +10,7 @@ export class Cell {
 
   constructor(value?: number) {
     this.notes = [];
-    if (value !== null) {
+    if (value !== null && value !== undefined) {
       this.value = value;
       this.readonly = true;
     }else {
