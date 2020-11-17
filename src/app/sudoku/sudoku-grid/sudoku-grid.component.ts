@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Cell, Sudoku} from '../sudoku';
+import {SudokuService} from '../sudoku.service';
 
 @Component({
   selector: 'app-sudoku-grid',
@@ -9,19 +10,20 @@ import {Cell, Sudoku} from '../sudoku';
 export class SudokuGridComponent implements OnInit {
   public sudoku: Sudoku;
 
-  constructor() {
+  constructor(private sudokuService: SudokuService) {
     this.sudoku = [];
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 9; i++) {
+    this.sudoku = this.sudokuService.generateSudoku();
+    /*for (let i = 0; i < 9; i++) {
       const row = [];
       for (let j = 1; j <= 9; j++) {
         const cell = new Cell(j);
         row.push(cell);
       }
       this.sudoku.push(row);
-    }
+    }*/
   }
 
   onClick(cell: Cell, rowI: number, colI: number): void {
