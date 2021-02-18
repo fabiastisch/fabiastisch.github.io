@@ -1,4 +1,19 @@
-export type Sudoku = Cell[][];
+export class Sudoku {
+  cells: Cell[][] = [];
+
+
+  constructor(array: number[][]) {
+    console.log(array);
+    array.forEach(row => {
+      const rowData = [];
+      row.forEach(value => {
+        rowData.push(new Cell(value));
+      });
+      this.cells.push(rowData);;
+    });
+    console.log(this.cells);;
+  }
+}
 
 export class Cell {
   value: number;
@@ -13,7 +28,7 @@ export class Cell {
     if (value !== null && value !== undefined) {
       this.value = value;
       this.readonly = true;
-    }else {
+    } else {
       this.readonly = false;
     }
   }

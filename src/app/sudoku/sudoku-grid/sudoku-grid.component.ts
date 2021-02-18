@@ -12,11 +12,13 @@ export class SudokuGridComponent implements OnInit {
   private selectedCell: Cell;
 
   constructor(private sudokuService: SudokuService) {
-    this.sudoku = [];
+    this.sudoku = new Sudoku(this.sudokuService.getRandomSudoku());
+    console.log(this.sudoku);
   }
 
   ngOnInit(): void {
-    this.sudoku = this.sudokuService.generateSudoku();
+
+    // this.sudoku = this.sudokuService.generateSudoku();
     /*for (let i = 0; i < 9; i++) {
       const row = [];
       for (let j = 1; j <= 9; j++) {
@@ -40,7 +42,7 @@ export class SudokuGridComponent implements OnInit {
   }
 
   onClick(cell: Cell, rowI: number, colI: number): void {
-    this.sudoku.forEach(row => row.forEach(cel => {
+    /*this.sudoku.forEach(row => row.forEach(cel => {
       cel.isActive = false;
       cel.highlightLight = false;
       cel.highlightHard = false;
@@ -56,7 +58,7 @@ export class SudokuGridComponent implements OnInit {
         row[colI].highlightLight = true;
       }
     });
-    this.selectedCell = cell;
+    this.selectedCell = cell;*/
   }
 
 
