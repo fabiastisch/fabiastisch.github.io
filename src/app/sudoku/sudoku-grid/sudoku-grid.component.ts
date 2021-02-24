@@ -42,23 +42,23 @@ export class SudokuGridComponent implements OnInit {
   }
 
   onClick(cell: Cell, rowI: number, colI: number): void {
-    /*this.sudoku.forEach(row => row.forEach(cel => {
+    this.sudoku.cells.forEach(row => row.forEach(cel => {
       cel.isActive = false;
       cel.highlightLight = false;
       cel.highlightHard = false;
     }));
     cell.isActive = true;
-    this.sudoku[rowI].forEach(c => {
+    this.sudoku.cells[rowI].forEach(c => {
       if (c !== cell) {
         c.highlightLight = true;
       }
     });
-    this.sudoku.forEach(row => {
+    this.sudoku.cells.forEach(row => {
       if (row[colI] !== cell) {
         row[colI].highlightLight = true;
       }
     });
-    this.selectedCell = cell;*/
+    this.selectedCell = cell;
   }
 
 

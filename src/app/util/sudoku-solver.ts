@@ -4,33 +4,9 @@ export class SudokuSolver {
   // N is the Size of the 2D Matrix N*N
   static N = 9;
   private grid: number[][] = [];
+  private unsolvedGrid: number[][];
 
   constructor() {
-    for (let i = 0; i < SudokuSolver.N; i++) {
-      const row = [];
-      for (let j = 0; j < SudokuSolver.N; j++) {
-        row.push(0);
-      }
-      this.grid.push(row);
-    }
-    let allNumers = Array.from(Array(10).keys());
-    for (let j = 0; j < SudokuSolver.N - 1; j++) {
-      const randomIndex = getRandomInt(0, allNumers.length - 1);
-      this.grid[0][j] = allNumers[randomIndex];
-      allNumers.splice(randomIndex, 1);
-    }
-    allNumers = Array.from(Array(10).keys());
-    allNumers = allNumers.filter(value => value !== this.grid[0][0]);
-    for (let i = 1; i < SudokuSolver.N - 1; i++) {
-      console.log('i', i);
-      const randomIndex = getRandomInt(0, allNumers.length - 1);
-
-      console.log(randomIndex, allNumers);
-      this.grid[i][0] = allNumers[randomIndex];
-      allNumers.splice(randomIndex, 1);
-
-    }
-    console.log(this.grid);
   }
 
   public solveSudoku(grid: number[][], row: number, col: number): number[][] | boolean {
@@ -112,16 +88,55 @@ export class SudokuSolver {
   }
 
   generateSudoku(): number[][] {
-
-
-    //console.log(JSON.stringify(this.grid));
-
-
     // console.log(this.solveSudoku(0, 0));
+    this.preBuildGrid();
     const sudoku = this.solveSudoku(this.grid, 0, 0);
-    if (!sudoku){
+    if (!sudoku) {
       return undefined;
     }
+    this.postBuildGrid();
+    console.log(this.unsolvedGrid);
     return sudoku as number[][];
+  }
+
+  private postBuildGrid(): void {
+    /*this.unsolvedGrid = JSON.parse(JSON.stringify(this.grid));
+    let notFinished = true;
+    while (notFinished) {
+      const x = getRandomInt(0, 8);
+      const y = getRandomInt(0, 8);
+      const lastData = this.unsolvedGrid[x][y];
+      this.unsolvedGrid[x][y] = 0;
+
+      if (this.solveSudoku(this.unsolvedGrid, 0, 0)) {
+      }else {
+        notFinished = false;
+        this.unsolvedGrid[x][y] = lastData;
+      }
+    }*/
+  }
+
+  private preBuildGrid(): void {
+    for (let i = 0; i < SudokuSolver.N; i++) {
+      const row = [];
+      for (let j = 0; j < SudokuSolver.N; j++) {
+        row.push(0);
+      }
+      this.grid.push(row);
+    }
+    let allNumers = Array.from(Array(10).keys());
+    for (let j = 0; j < SudokuSolver.N - 1; j++) {
+      const randomIndex = getRandomInt(0, allNumers.length - 1);
+      this.grid[0][j] = allNumers[randomIndex];
+      allNumers.splice(randomIndex, 1);
+    }
+    allNumers = Array.from(Array(10).keys());
+    allNumers = allNumers.filter(value => value !== this.grid[0][0]);
+    for (let i = 1; i < SudokuSolver.N - 1; i++) {
+      const randomIndex = getRandomInt(0, allNumers.length - 1);
+
+      this.grid[i][0] = allNumers[randomIndex];
+      allNumers.splice(randomIndex, 1);
+    }
   }
 }

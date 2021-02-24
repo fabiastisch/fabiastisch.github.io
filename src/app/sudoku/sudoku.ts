@@ -3,7 +3,7 @@ export class Sudoku {
 
 
   constructor(array: number[][]) {
-    console.log(array);
+    console.log('SudokuConstructor');
     array.forEach(row => {
       const rowData = [];
       row.forEach(value => {
@@ -11,7 +11,6 @@ export class Sudoku {
       });
       this.cells.push(rowData);;
     });
-    console.log(this.cells);;
   }
 }
 
@@ -25,7 +24,7 @@ export class Cell {
 
   constructor(value?: number) {
     this.notes = [];
-    if (value !== null && value !== undefined) {
+    if (value !== null && value !== undefined && value !== -1) {
       this.value = value;
       this.readonly = true;
     } else {
