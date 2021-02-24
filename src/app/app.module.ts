@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import { SudokuComponent } from './sudoku/sudoku.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SudokuGridComponent } from './sudoku/sudoku-grid/sudoku-grid.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,12 @@ import { SudokuGridComponent } from './sudoku/sudoku-grid/sudoku-grid.component'
     SudokuComponent,
     SudokuGridComponent,
   ],
-    imports: [
-        BrowserModule,
-        RouterModule,
-        AppRoutingModule
-    ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

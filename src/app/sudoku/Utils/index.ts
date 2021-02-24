@@ -65,11 +65,14 @@ export function getSudoku(): number[][] {
     shuffleArray(arrayStartAtZero(size)).forEach(row => {
       const temp = fullSudoku[col][row];
       fullSudoku[col][row] = -1;
-      if (getSolutionCount(fullSudoku) > 1){
+      if (getSolutionCount(fullSudoku) > 1) {
         fullSudoku[col][row] = temp;
         return;
       }
     });
+    if (getSolutionCount(fullSudoku) === 1) {
+      return;
+    }
   });
 
   return fullSudoku;

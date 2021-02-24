@@ -1,6 +1,7 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {Cell, Sudoku} from '../sudoku';
 import {SudokuService} from '../sudoku.service';
+import waitTime from '../../util/time';
 
 @Component({
   selector: 'app-sudoku-grid',
@@ -10,32 +11,27 @@ import {SudokuService} from '../sudoku.service';
 export class SudokuGridComponent implements OnInit {
   public sudoku: Sudoku;
   private selectedCell: Cell;
+  solvingSpeed: number;
 
-  constructor(private sudokuService: SudokuService) {
-    this.sudoku = new Sudoku(this.sudokuService.getRandomSudoku());
+  constructor(private sudokuService: SudokuService, private changeDetectorRef: ChangeDetectorRef) {
+    this.newSudoku();
     console.log(this.sudoku);
   }
 
   ngOnInit(): void {
+  }
 
-    // this.sudoku = this.sudokuService.generateSudoku();
-    /*for (let i = 0; i < 9; i++) {
-      const row = [];
-      for (let j = 1; j <= 9; j++) {
-        const cell = new Cell(j);
-        row.push(cell);
-      }
-      this.sudoku.push(row);
-    }*/
+  public newSudoku(): void {
+    this.sudoku = new Sudoku(this.sudokuService.getRandomSudoku());
   }
 
   @HostListener('window:keydown', ['$event'])
   private onKeyDown(event: KeyboardEvent): void {
     const num = parseInt(event.key, 10);
-    if (this.selectedCell === undefined || this.selectedCell === null){
+    if (this.selectedCell === undefined || this.selectedCell === null) {
       return;
     }
-    if (this.selectedCell.readonly){
+    if (this.selectedCell.readonly) {
       return;
     }
     this.selectedCell.value = num;
@@ -61,5 +57,23 @@ export class SudokuGridComponent implements OnInit {
     this.selectedCell = cell;
   }
 
+
+  public async solve(): Promise<void> {
+    console.log('solve clicked');
+    // await this.sudoku.solveCells();
+    console.log(this.sudoku.cells.map((value => value.map(value1 => value1.value ? value1.value : -1))));
+    const string = Sudoku.toString(this.sudoku.cells.map((value => value.map(value1 => value1.value ? value1.value : -1))));
+    Sudoku.print('x', Sudoku.fromString(string));
+    for await(const data of Sudoku.solve(string)) {
+      const {
+        row,
+        column,
+        value
+      } = data;
+      this.sudoku.cells[row][column].value = value;
+      this.changeDetectorRef.detectChanges();
+      await waitTime(100);
+    }
+  }
 
 }
