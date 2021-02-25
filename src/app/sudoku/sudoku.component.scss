@@ -1,24 +1,31 @@
 $activeColor: #4e9ae5;
 $highlightLightColor: #c7c8c4;
 $highlightHardColor: #969793;
-
+.flex-vertical-center { align-items: center; }
+.flex { display: flex; align-items: center; justify-content: center } .flex-horizontal-center { justify-content: center; }
 .display{
-  position: absolute;
   margin: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 50vh;
-  height: 50vh;
+  width: 50vmin;
+  height: 50vmin;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  border: 2px solid black;
+  /*justify-content: center;
+  align-items: center;*/
+}
+.f{
+  margin: 0;
+  width: 50vmin;
+  height: 50vmin;
+  display: flex;
+  flex-direction: column;
   border: 2px solid black;
 }
 
 .row{
   flex: 1;
   display: flex;
+  justify-self: center;
   margin: 0;
 }
 .cell{
