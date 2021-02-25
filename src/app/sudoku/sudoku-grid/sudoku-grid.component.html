@@ -21,13 +21,10 @@
   </div>
 </div>
 
-<div class="center" *ngIf="this.sudoku.isSolved()">
-  <h1>Solved</h1>
-</div>
 
 <div class="center">
-  <button (click)="this.solve()"> Solve </button>
-  <button (click)="this.newSudoku()"> New Sudoku </button>
+  <button type="button" class="btn btn-primary mx-3" (click)="this.solve()">Solve</button>
+  <button type="button" class="btn btn-primary mx-3" (click)="this.newSudoku()"> New Sudoku </button>
 </div>
 
 
