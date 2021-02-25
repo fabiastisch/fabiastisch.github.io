@@ -50,7 +50,7 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     this.sudoku.forEach(row => row.forEach(cel => {
       cel.isActive = false;
       cel.highlightLight = false;
-      cel.highlightHard = false;
+      cel.highlightHard = cel.value === cell.value && cell.value !== undefined && cel !== cell;
     }));
     cell.isActive = true;
     this.sudoku[rowI].forEach(c => {

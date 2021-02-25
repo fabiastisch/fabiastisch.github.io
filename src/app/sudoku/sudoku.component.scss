@@ -1,6 +1,6 @@
 $activeColor: #4e9ae5;
 $highlightLightColor: #c7c8c4;
-$highlightHardColor: #969793;
+$highlightSameCells: #8ceeee;
 .flex-vertical-center { align-items: center; }
 .flex { display: flex; align-items: center; justify-content: center } .flex-horizontal-center { justify-content: center; }
 .display{
@@ -56,7 +56,7 @@ $highlightHardColor: #969793;
     background: #c7c8c4;
   }
   &.highlightHard{
-    background: $highlightHardColor;
+    background: $highlightSameCells;
   }
   &.writeable{
     color: darkblue;
