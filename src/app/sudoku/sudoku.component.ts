@@ -101,11 +101,9 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   }
 
   private handleKeys(event: KeyboardEvent): void {
-    console.log(event.key);
     switch (event.key) {
       case 'w':
       case 'ArrowUp':
-        console.log('Up');
         this.onClick(this.selectedCell ?
           this.sudoku[(this.selectedCell.row - 1 >= 0 ? this.selectedCell.row - 1 : this.sudoku.length - 1)][this.selectedCell.col] :
           this.sudoku[0][0]);
@@ -137,10 +135,8 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   }
 
   private checkSolved(): void {
-    console.log('checkSolved');
     if (this.sudoku.isSolved()) {
       const time = moment().diff(this.startTime, 'seconds', true);
-      console.log('isSolved');
       const componentRef = this.modalService.open(ModalContentComponent);
       componentRef.componentInstance.headerText = 'Success!  \nSolved in ' + time + ' seconds.';
     }

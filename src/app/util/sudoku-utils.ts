@@ -211,24 +211,26 @@ export class SudokuUtils {
   }
 
   static getSudoku(): { sudoku: number[][], solvedSudoku: number[][] } {
-    console.time('benchmark');
     const sudoku = SudokuUtils.shuffleSudoku(SudokuUtils.generateFullSudoku());
     const solvedSudoku = JSON.parse(JSON.stringify(sudoku));
-
-    shuffleArray(arrayStartAtZero(SudokuUtils.SIZE)).forEach(col => {
-      shuffleArray(arrayStartAtZero(SudokuUtils.SIZE)).forEach(row => {
+    const random = () => shuffleArray(arrayStartAtZero(SudokuUtils.SIZE));
+    let emptyFields = 0;
+    for (const row of random()) {
+      for (const col of random()) {
         const temp = sudoku[col][row];
-        sudoku[col][row] = -1;
-        if (SudokuUtils.getSolutionCount(sudoku) > 1) {
-          sudoku[col][row] = temp;
-          return;
+        if (temp === -1) {
+          continue;
         }
-      });
-      if (SudokuUtils.getSolutionCount(sudoku) === 1) {
-        return;
+        sudoku[col][row] = -1;
+        const solutionCount = SudokuUtils.getSolutionCount(sudoku);
+        // backtrack
+        if (solutionCount > 1) {
+          sudoku[col][row] = temp;
+        } else {
+          emptyFields++;
+        }
       }
-    });
-    console.timeEnd('benchmark');
+    }
 
     return {sudoku, solvedSudoku};
   }
