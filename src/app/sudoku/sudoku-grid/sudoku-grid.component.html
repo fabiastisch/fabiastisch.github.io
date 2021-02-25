@@ -12,6 +12,8 @@
          [class.highlightLight] = cell.highlightLight
          [class.highlightHard] = cell.highlightHard
          [class.writeable] = !cell.readonly
+         [class.correct]="cell.solution === cell.value && !cell.readonly"
+         [class.false]="cell.solution !== cell.value && !cell.readonly"
          (click)="onClick(cell, rowI, colI)" >
 
       <div class="value">{{cell.value}}</div>
@@ -19,7 +21,13 @@
   </div>
 </div>
 
+<div class="center" *ngIf="this.sudoku.isSolved()">
+  <h1>Solved</h1>
+</div>
+
 <div class="center">
   <button (click)="this.solve()"> Solve </button>
   <button (click)="this.newSudoku()"> New Sudoku </button>
 </div>
+
+

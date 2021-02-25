@@ -1,43 +1,52 @@
-import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {Cell, SudokuModel} from '../sudoku-model';
 import {SudokuUtils} from '../../util/sudoku-utils';
-import waitTime from '../../util/time';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalContentComponent} from '../../modal-content/modal-content.component';
+import {Moment} from 'moment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sudoku-grid',
   templateUrl: './sudoku-grid.component.html',
   styleUrls: ['./sudoku-grid.component.scss']
 })
-export class SudokuGridComponent implements OnInit {
+export class SudokuGridComponent implements OnInit, AfterViewInit {
   public sudoku: SudokuModel;
   private selectedCell: Cell;
   solvingSpeed: number;
+  private startTime: Moment;
 
-  constructor( private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal) {
     this.newSudoku();
-    console.log(this.sudoku);
   }
 
   ngOnInit(): void {
+    this.startTime = moment();
+  }
+
+  ngAfterViewInit(): void {
+    console.log();
+
   }
 
   public newSudoku(): void {
     this.sudoku = new SudokuModel(SudokuUtils.getSudoku());
+    this.startTime = moment();
   }
 
   @HostListener('window:keydown', ['$event'])
   private onKeyDown(event: KeyboardEvent): void {
-    const num = parseInt(event.key, 10);
-    if (this.selectedCell === undefined || this.selectedCell === null) {
-      return;
-    }
-    if (this.selectedCell.readonly) {
-      return;
-    }
-    this.selectedCell.value = num;
+    this.handleNumbers(event);
+    this.handleKeys(event);
+    this.checkSolved();
   }
 
-  onClick(cell: Cell, rowI: number, colI: number): void {
+  onClick(cell: Cell, rowI?: number, colI?: number): void {
+    if (rowI === undefined && colI === undefined) {
+      rowI = cell.row;
+      colI = cell.col;
+    }
     this.sudoku.forEach(row => row.forEach(cel => {
       cel.isActive = false;
       cel.highlightLight = false;
@@ -77,4 +86,63 @@ export class SudokuGridComponent implements OnInit {
     }*/
   }
 
+  private handleNumbers(event: KeyboardEvent): void {
+    const num = parseInt(event.key, 10);
+    if (Number.isNaN(num) || num === 0) {
+      return;
+    }
+    if (this.selectedCell === undefined || this.selectedCell === null) {
+      return;
+    }
+    if (this.selectedCell.readonly) {
+      return;
+    }
+    this.selectedCell.value = num;
+  }
+
+  private handleKeys(event: KeyboardEvent): void {
+    console.log(event.key);
+    switch (event.key) {
+      case 'w':
+      case 'ArrowUp':
+        console.log('Up');
+        this.onClick(this.selectedCell ?
+          this.sudoku[(this.selectedCell.row - 1 >= 0 ? this.selectedCell.row - 1 : this.sudoku.length - 1)][this.selectedCell.col] :
+          this.sudoku[0][0]);
+        break;
+      case 'a':
+      case 'ArrowLeft':
+        this.onClick(this.selectedCell ?
+          this.sudoku[this.selectedCell.row][(this.selectedCell.col - 1 >= 0 ? this.selectedCell.col - 1 : this.sudoku.length - 1)] :
+          this.sudoku[0][0]);
+        break;
+      case's':
+      case'ArrowDown':
+      case 'Enter':
+        this.onClick(this.selectedCell ?
+          this.sudoku[(this.selectedCell.row + 1 < this.sudoku.length ? this.selectedCell.row + 1 : 0)][this.selectedCell.col] :
+          this.sudoku[0][0]);
+        break;
+      case'd':
+      case'ArrowRight':
+        this.onClick(this.selectedCell ?
+          this.sudoku[this.selectedCell.row][(this.selectedCell.col + 1 < this.sudoku.length ? this.selectedCell.col + 1 : 0)] :
+          this.sudoku[0][0]);
+        break;
+      case 'Delete':
+      case 'Backspace':
+        this.selectedCell.value = this.selectedCell.readonly ? this.selectedCell.value : undefined;
+        break;
+    }
+  }
+
+  private checkSolved(): void {
+    console.log('checkSolved');
+    if (this.sudoku.isSolved()) {
+      const time = moment().diff(this.startTime, 'seconds', true);
+      console.log('isSolved');
+      const componentRef = this.modalService.open(ModalContentComponent);
+      componentRef.componentInstance.headerText = 'Success!  \nSolved in ' + time + ' seconds.';
+    }
+  }
 }

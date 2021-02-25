@@ -182,8 +182,6 @@ export class SudokuUtils {
       grid += first.join('');
 
     });
-    SudokuUtils.print(null, SudokuUtils.fromString(grid));
-
 
     return SudokuUtils.fromString(grid);
   }
@@ -213,6 +211,7 @@ export class SudokuUtils {
   }
 
   static getSudoku(): { sudoku: number[][], solvedSudoku: number[][] } {
+    console.time('benchmark');
     const sudoku = SudokuUtils.shuffleSudoku(SudokuUtils.generateFullSudoku());
     const solvedSudoku = JSON.parse(JSON.stringify(sudoku));
 
@@ -229,6 +228,7 @@ export class SudokuUtils {
         return;
       }
     });
+    console.timeEnd('benchmark');
 
     return {sudoku, solvedSudoku};
   }

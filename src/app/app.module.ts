@@ -7,6 +7,7 @@ import { SudokuComponent } from './sudoku/sudoku.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SudokuGridComponent } from './sudoku/sudoku-grid/sudoku-grid.component';
 import {FormsModule} from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

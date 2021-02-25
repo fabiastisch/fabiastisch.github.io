@@ -113,7 +113,7 @@ export function* search(
   if (rootNode.right === rootNode) {
     // Return a copy without pointing back to the reference,
     // as the values might be replaced
-    console.log('[terminate]');
+    // console.log('[terminate]');
     yield [...solution];
   }
   // Start with the smallest column node to minimize search
