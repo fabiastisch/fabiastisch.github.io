@@ -33,5 +33,66 @@ $colorDark: #d08c4f;
 }
 .bg-colorDark{
   background: $colorDark;
+}
 
+.svg{
+  width: 100%;
+  height: 100%;
+}
+.white{
+  @extend .svg;
+}
+.black{
+  @extend .svg;
+  fill: white;
+
+}
+
+.whiteKing{
+  @extend .white;
+  background-image: url("~src/assets/chess/whiteKing.svg");
+}
+.blackKing{
+  @extend .black;
+  background-image: url("~src/assets/chess/blackKing.svg");
+}
+.whiteQueen{
+  @extend .white;
+  background-image: url("~src/assets/chess/whitequeen.svg");
+}
+.blackQueen{
+  @extend .black;
+  background-image: url("~src/assets/chess/blackQueen.svg");
+}
+.whiteBishop{
+  @extend .white;
+  background-image: url("~src/assets/chess/whiteBishop.svg");
+}
+.blackBishop{
+  @extend .black;
+  background-image: url("~src/assets/chess/blackBishop.svg");
+}
+.whiteKnight{
+  @extend .white;
+  background-image: url("~src/assets/chess/whiteKnight.svg");
+}
+.blackKnight{
+  @extend .black;
+  background-image: url("~src/assets/chess/blackKnight.svg");
+}
+.whiteTower{
+  @extend .white;
+  background-image: url("~src/assets/chess/whiteTower.svg");
+}
+.blackTower{
+  @extend .black;
+  background-image: url("~src/assets/chess/blackTower.svg");
+}
+.whitePawn{
+  @extend .white;
+  background-image: url("~src/assets/chess/whitePawn.svg");
+}
+.blackPawn{
+  @extend .black;
+  background-image: url("~src/assets/chess/blackPawn.svg");
 }
