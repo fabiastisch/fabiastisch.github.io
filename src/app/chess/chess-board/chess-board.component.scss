@@ -44,10 +44,7 @@ $colorDark: #d08c4f;
 }
 .black{
   @extend .svg;
-  fill: white;
-
 }
-
 .whiteKing{
   @extend .white;
   background-image: url("~src/assets/chess/whiteKing.svg");
