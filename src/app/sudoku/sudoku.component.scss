@@ -1,8 +1,7 @@
 $activeColor: #4e9ae5;
 $highlightLightColor: #c7c8c4;
 $highlightSameCells: #8ceeee;
-.flex-vertical-center { align-items: center; }
-.flex { display: flex; align-items: center; justify-content: center } .flex-horizontal-center { justify-content: center; }
+
 .display{
   margin: 0;
   width: 50vmin;
@@ -12,14 +11,6 @@ $highlightSameCells: #8ceeee;
   border: 2px solid black;
   /*justify-content: center;
   align-items: center;*/
-}
-.f{
-  margin: 0;
-  width: 50vmin;
-  height: 50vmin;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
 }
 
 .row{
@@ -74,9 +65,6 @@ $highlightSameCells: #8ceeee;
   font-size: 1.5em;
 }
 
-.center{
-  text-align: center;
-}
 
 
 .dark-modal .modal-content {

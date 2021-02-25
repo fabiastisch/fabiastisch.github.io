@@ -1,0 +1,11 @@
+<div class="flex">
+  <div class="display">
+    <div class="row" *ngFor="let row of board, let rowIndex = index">
+      <div class="cell" *ngFor="let cell of board, let colIndex = index"
+           [ngClass]=" (rowIndex %2 === 0 && colIndex %2 !== 0 || rowIndex %2 !== 0 && colIndex %2 === 0) ?'bg-colorTwo':'bg-colorOne'"
+      >
+        <div class="value"></div>
+      </div>
+    </div>
+  </div>
+</div>

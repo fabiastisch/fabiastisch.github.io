@@ -4,3 +4,21 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css';
+
+.flex-vertical-center {
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.flex-horizontal-center {
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
+}

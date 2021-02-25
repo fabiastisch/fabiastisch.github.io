@@ -1,0 +1,37 @@
+$activeColor: #4e9ae5;
+$colorOne: #e1e9de;
+$colorTwo: #d08c4f;
+.cell {
+  cursor: pointer;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid black;
+
+}
+
+.display{
+  margin: 0;
+  width: 50vmin;
+  height: 50vmin;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  /*justify-content: center;
+  align-items: center;*/
+}
+
+.row{
+  flex: 1;
+  display: flex;
+  justify-self: center;
+  margin: 0;
+}
+.bg-colorOne{
+  background: $colorOne;
+}
+.bg-colorTwo{
+  background: $colorTwo;
+
+}
