@@ -1,6 +1,6 @@
 $activeColor: #4e9ae5;
-$colorOne: #e5e1d3;
-$colorTwo: #d08c4f;
+$colorLight: #fffad5;
+$colorDark: #d08c4f;
 .cell {
   cursor: pointer;
   flex: 1;
@@ -28,10 +28,10 @@ $colorTwo: #d08c4f;
   justify-self: center;
   margin: 0;
 }
-.bg-colorOne{
-  background: $colorOne;
+.bg-colorLight{
+  background: $colorLight;
 }
-.bg-colorTwo{
-  background: $colorTwo;
+.bg-colorDark{
+  background: $colorDark;
 
 }
