@@ -9,7 +9,6 @@ import {FormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import {ChessModule} from './chess/chess.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import {ChessModule} from './chess/chess.module';
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    ChessModule
   ],
   providers: [],
   bootstrap: [AppComponent]
