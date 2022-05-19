@@ -1,0 +1,72 @@
+$activeColor: #4e9ae5;
+$highlightLightColor: #c7c8c4;
+$highlightSameCells: #8ceeee;
+
+.display{
+  margin: 0;
+  width: 50vmin;
+  height: 50vmin;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  /*justify-content: center;
+  align-items: center;*/
+}
+
+.row{
+  flex: 1;
+  display: flex;
+  justify-self: center;
+  margin: 0;
+}
+.cell{
+  cursor: pointer;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid black;
+  &.top{
+    border-top: 2px solid black;
+  }
+  &.left{
+    border-left: 2px solid black;
+  }
+  &.right{
+    border-right: 2px solid black;
+  }
+  &.bot{
+    border-bottom: 2px solid black;
+  }
+  &.active{
+    background: $activeColor;
+    //font-size: larger;
+  }
+  &.highlightLight{
+    background: $highlightLightColor;
+    background: #c7c8c4;
+  }
+  &.highlightHard{
+    background: $highlightSameCells;
+  }
+  &.writeable{
+    color: darkblue;
+  }
+  &.correct{
+    color: #024802;
+  }
+  &.false{
+    color: #770202;
+  }
+
+}
+
+
+
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+.dark-modal .close {
+  color: white;
+}
