@@ -9,6 +9,7 @@ import {HomeComponent} from "./home/home.component";
 import {SudokuComponent} from "./sudoku/sudoku.component";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { UnderlineComponent } from './underline/underline.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     SudokuComponent,
     HeaderComponent,
     HomeComponent,
+    UnderlineComponent,
   ],
   imports: [
     BrowserModule,

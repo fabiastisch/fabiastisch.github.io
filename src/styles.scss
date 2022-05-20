@@ -22,3 +22,15 @@
 .center {
   text-align: center;
 }
+*{
+  color: var(--main-color);
+}
+
+
+body{
+  background-color: var(--background-color);
+}
+:root{
+  --main-color : white;
+  --background-color : #222222;
+}
