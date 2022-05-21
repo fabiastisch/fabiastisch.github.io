@@ -6,15 +6,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-               <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home"><app-underline> Home</app-underline> <span
-          class="sr-only">(current)</span></a>
-      </li>
+      <app-routerlink name="Home" link="/home"></app-routerlink>
+      <app-routerlink name="Über mich" link="/about"></app-routerlink>
+      <app-routerlink name="Sudoku" link="/sudoku"></app-routerlink>
 
-      <li class="nav-item">
-        <a class="nav-link " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-           routerLink="/sudoku"><app-underline>Sudoku</app-underline></a>
-      </li>
       <!--<li class="nav-item" [class.active]="route.isActive('/chess', false)">
         <a class="nav-link" href="chess">Chess</a>
       </li>-->

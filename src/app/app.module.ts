@@ -10,6 +10,8 @@ import {SudokuComponent} from "./sudoku/sudoku.component";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { UnderlineComponent } from './underline/underline.component';
+import { AboutComponent } from './about/about.component';
+import { RouterlinkComponent } from './header/routerlink/routerlink.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { UnderlineComponent } from './underline/underline.component';
     HeaderComponent,
     HomeComponent,
     UnderlineComponent,
+    AboutComponent,
+    RouterlinkComponent,
   ],
   imports: [
     BrowserModule,
