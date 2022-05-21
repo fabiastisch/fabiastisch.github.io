@@ -1,6 +1,12 @@
 $activeColor: #4e9ae5;
-$highlightLightColor: #c7c8c4;
+$highlightLightColor: #4d4d4d;
 $highlightSameCells: #8ceeee;
+$correctColor: #1bef00;
+$wrongColor: #ff0000;
+$readOnlyColor: #c7c7c7;
+*{
+  color: var(--main-color);
+}
 
 .display{
   margin: 0;
@@ -44,20 +50,19 @@ $highlightSameCells: #8ceeee;
   }
   &.highlightLight{
     background: $highlightLightColor;
-    background: #c7c8c4;
   }
   &.highlightHard{
     background: $highlightSameCells;
   }
-  &.writeable{
-    color: darkblue;
+  &.readonly >div{
+    color: $readOnlyColor;
   }
-  &.correct{
-    color: #024802;
+/*  &.correct >div{
+    color: $correctColor;
   }
-  &.false{
-    color: #770202;
-  }
+  &.false >div{
+    color: $wrongColor;
+  }*/
 
 }
 

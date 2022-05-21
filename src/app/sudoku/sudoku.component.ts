@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {Cell, SudokuModel} from './sudoku-model';
 import {Moment} from 'moment';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import {SudokuUtils} from '../util/sudoku-utils';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
@@ -16,6 +16,8 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   private selectedCell: Cell | undefined;
   //solvingSpeed: number;
   private startTime: Moment | undefined;
+
+  private modal: NgbModalRef | undefined;
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal) {
     this.newSudoku();
@@ -146,9 +148,10 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     if (this.sudoku == undefined) return;
 
     if (this.sudoku.isSolved()) {
+      if (this.modal)this.modal.close();
       const time = moment().diff(this.startTime, 'seconds', true);
-      const componentRef = this.modalService.open(ModalContentComponent);
-      componentRef.componentInstance.headerText = 'Success!  \nSolved in ' + time + ' seconds.';
+      this.modal = this.modalService.open(ModalContentComponent);
+      this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + time + ' seconds.';
     }
   }
 }
