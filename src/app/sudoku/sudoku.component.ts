@@ -160,12 +160,7 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     if (this.sudoku.isSolved()) {
       if (this.modal)this.modal.close();
       let seconds:number = moment().diff(this.startTime, 'seconds', false);
-      let minutes = parseInt(String(seconds / 60));
-      seconds -= minutes * 60;
-      let hours = parseInt(String(minutes/60));
-      minutes -= hours * 60;
       this.modal = this.modalService.open(ModalContentComponent);
-
       this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + this.timePipe.transform(seconds);
     }
   }
