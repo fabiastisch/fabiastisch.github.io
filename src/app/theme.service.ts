@@ -32,7 +32,6 @@ export class ThemeService {
   }
 
   isDarkMode() {
-    console.log('Is Dark? ' + Theme[this.theme])
     return this.theme === Theme.dark;
   }
 
