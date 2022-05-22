@@ -5,6 +5,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import {SudokuUtils} from '../util/sudoku-utils';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
+import {TimePipe} from "../time.pipe";
 
 @Component({
   selector: 'app-sudoku',
@@ -21,7 +22,7 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   // @ts-ignore
   height: any = '500px';
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal, private timePipe: TimePipe) {
     this.newSudoku();
   }
 
@@ -158,9 +159,14 @@ export class SudokuComponent implements OnInit, AfterViewInit {
 
     if (this.sudoku.isSolved()) {
       if (this.modal)this.modal.close();
-      const time = moment().diff(this.startTime, 'seconds', true);
+      let seconds:number = moment().diff(this.startTime, 'seconds', false);
+      let minutes = parseInt(String(seconds / 60));
+      seconds -= minutes * 60;
+      let hours = parseInt(String(minutes/60));
+      minutes -= hours * 60;
       this.modal = this.modalService.open(ModalContentComponent);
-      this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + time + ' seconds.';
+
+      this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + this.timePipe.transform(seconds);
     }
   }
 }

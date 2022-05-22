@@ -33,13 +33,10 @@ body.light{
   --highlightSameCells: #8282ff;
   --correctColor: #164900;
   --wrongColor: #860000;
-  --readOnlyColor: #000000;
+  --readOnlyColor: #343434;
 
   background-color: var(--background-color);
   color: var(--main-color);
-
-
-
 }
 body.dark{
   --main-color : white;

@@ -19,7 +19,6 @@ export class ThemeService {
   }
 
   init() {
-
     this.renderer.addClass(document.body, Theme[this.theme]);
   }
 

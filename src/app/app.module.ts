@@ -13,6 +13,7 @@ import { UnderlineComponent } from './underline/underline.component';
 import { AboutComponent } from './about/about.component';
 import { RouterlinkComponent } from './header/routerlink/routerlink.component';
 import { SwitchComponent } from './switch/switch.component';
+import { TimePipe } from './time.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SwitchComponent } from './switch/switch.component';
     AboutComponent,
     RouterlinkComponent,
     SwitchComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,9 @@ import { SwitchComponent } from './switch/switch.component';
     FormsModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    TimePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

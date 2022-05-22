@@ -42,6 +42,7 @@ $readOnlyColor: #c7c7c7;
   align-items: center;
   display: flex;
   border: 1px solid var(--main-color);
+  font-size: large;
 
   &.top{
     border-top: 2px solid var(--main-color);
@@ -68,12 +69,12 @@ $readOnlyColor: #c7c7c7;
   &.readonly >div{
     color: var(--readOnlyColor);
   }
-  &.correct >div{
+/*  &.correct >div{
     color: var(--correctColor);
   }
   &.false >div{
     color: var(--wrongColor);
-  }
+  }*/
 
 }
 
