@@ -25,15 +25,35 @@
 
 
 body.light{
-  background-color: #dddddd;
-  color: black;
-  --main-color : black;
-  --background-color : #222222;
+  --main-color : #090909;
+  --background-color : #dddddd;
+
+  --activeColor: #5050ff;
+  --highlightLightColor: #c0c0c0;
+  --highlightSameCells: #8282ff;
+  --correctColor: #164900;
+  --wrongColor: #860000;
+  --readOnlyColor: #000000;
+
+  background-color: var(--background-color);
+  color: var(--main-color);
+
+
+
 }
 body.dark{
-  background-color: #222222;
-  color: white;
   --main-color : white;
   --background-color : #222222;
+
+  --activeColor: #4e9ae5;
+  --highlightLightColor: #4d4d4d;
+  --highlightSameCells: #8ceeee;
+  --correctColor: #1bef00;
+  --wrongColor: #ff0000;
+  --readOnlyColor: #c7c7c7;
+
+  background-color: var(--background-color);
+  color: var(--main-color);
+
 }
 

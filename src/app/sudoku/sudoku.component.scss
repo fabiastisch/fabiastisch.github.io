@@ -4,19 +4,29 @@ $highlightSameCells: #8ceeee;
 $correctColor: #1bef00;
 $wrongColor: #ff0000;
 $readOnlyColor: #c7c7c7;
-*{
-  color: var(--main-color);
-}
+@import "styles";
 
 .display{
-  margin: 0;
-  width: 50vmin;
-  height: 50vmin;
+  margin-left: auto;
+  margin-right: auto;
+/*  margin: 0;
+  min-width: 50vmin;
+  min-height: 50vmin;*/
+  max-height: 70vh;
+  max-width: 70vh;
+
   display: flex;
   flex-direction: column;
   border: 2px solid var(--main-color);
   /*justify-content: center;
   align-items: center;*/
+
+  @include phone{
+    max-height: 50vh;
+    max-width: 100vw;
+    background-color: #4e9ae5;
+  }
+
 }
 
 .row{
@@ -32,6 +42,7 @@ $readOnlyColor: #c7c7c7;
   align-items: center;
   display: flex;
   border: 1px solid var(--main-color);
+
   &.top{
     border-top: 2px solid var(--main-color);
   }
@@ -45,32 +56,32 @@ $readOnlyColor: #c7c7c7;
     border-bottom: 2px solid var(--main-color);
   }
   &.active{
-    background: $activeColor;
+    background: var(--activeColor);
     //font-size: larger;
   }
   &.highlightLight{
-    background: $highlightLightColor;
+    background: var(--highlightLightColor);
   }
   &.highlightHard{
-    background: $highlightSameCells;
+    background: var(--highlightSameCells);
   }
   &.readonly >div{
-    color: $readOnlyColor;
+    color: var(--readOnlyColor);
   }
-/*  &.correct >div{
-    color: $correctColor;
+  &.correct >div{
+    color: var(--correctColor);
   }
   &.false >div{
-    color: $wrongColor;
-  }*/
+    color: var(--wrongColor);
+  }
 
 }
 
 
 
 .dark-modal .modal-content {
-  background-color: #292b2c;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--main-color);
 }
 .dark-modal .close {
   color: white;

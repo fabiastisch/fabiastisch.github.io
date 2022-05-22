@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SudokuModel} from "../sudoku/sudoku-model";
+import {SudokuUtils} from "../util/sudoku-utils";
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  sudoku : SudokuModel | undefined;
 
-  constructor() { }
+  constructor() {
+    this.sudoku = new SudokuModel(SudokuUtils.getSudoku());
+  }
 
   ngOnInit(): void {
   }

@@ -18,6 +18,8 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   private startTime: Moment | undefined;
 
   private modal: NgbModalRef | undefined;
+  // @ts-ignore
+  height: any = '500px';
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal) {
     this.newSudoku();
@@ -25,10 +27,17 @@ export class SudokuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.startTime = moment();
+    // @ts-ignore
+    this.height = document.getElementById('display').offsetWidth + 'px';
   }
 
   ngAfterViewInit(): void {
-    console.log();
+
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: { target: { innerWidth: any; }; }) {
+    // @ts-ignore
+    this.height = document.getElementById('display').offsetWidth + 'px';
 
   }
 

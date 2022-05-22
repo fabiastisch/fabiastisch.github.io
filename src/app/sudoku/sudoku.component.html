@@ -1,6 +1,5 @@
 <div class="center">
   <h1> Sudoku </h1>
-  <p> In development </p>
 </div>
 
 <div class="center my-3">
@@ -8,27 +7,24 @@
   <button type="button" class="btn btn-primary mx-3" (click)="this.newSudoku()"> New Sudoku</button>
 </div>
 
+<div class="display" id="display" [style.height]="height">
+  <div class="row" *ngFor="let row of sudoku; index as rowI"
+  >
 
-<div class="flex">
-  <div class="display">
-    <div class="row" *ngFor="let row of sudoku; index as rowI"
-    >
+    <div class="cell" *ngFor="let cell of row; index as colI"
+         [class.top]="rowI % 3 == 0"
+         [class.bot]="rowI % 3 == 2"
+         [class.left]="colI % 3 == 0"
+         [class.right]="colI % 3 == 2"
+         [class.active]=cell.isActive
+         [class.highlightLight]=cell.highlightLight
+         [class.highlightHard]=cell.highlightHard
+         [class.readonly]=cell.readonly
+         [class.correct]="cell.solution === cell.value && !cell.readonly"
+         [class.false]="cell.solution !== cell.value && !cell.readonly"
+         (click)="onClick(cell, rowI, colI)">
 
-      <div class="cell" *ngFor="let cell of row; index as colI"
-           [class.top]="rowI % 3 == 0"
-           [class.bot]="rowI % 3 == 2"
-           [class.left]="colI % 3 == 0"
-           [class.right]="colI % 3 == 2"
-           [class.active]=cell.isActive
-           [class.highlightLight]=cell.highlightLight
-           [class.highlightHard]=cell.highlightHard
-           [class.readonly]=cell.readonly
-           [class.correct]="cell.solution === cell.value && !cell.readonly"
-           [class.false]="cell.solution !== cell.value && !cell.readonly"
-           (click)="onClick(cell, rowI, colI)">
-
-        <div class="value">{{cell.value}}</div>
-      </div>
+      <div class="value">{{cell.value}}</div>
     </div>
   </div>
 </div>
