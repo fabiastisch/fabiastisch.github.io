@@ -24,12 +24,16 @@
 }
 
 
-
-body{
-  background-color: var(--background-color);
-  color: var(--main-color);
+body.light{
+  background-color: #dddddd;
+  color: black;
+  --main-color : black;
+  --background-color : #222222;
 }
-:root{
+body.dark{
+  background-color: #222222;
+  color: white;
   --main-color : white;
   --background-color : #222222;
 }
+

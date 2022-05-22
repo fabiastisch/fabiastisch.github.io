@@ -12,6 +12,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { UnderlineComponent } from './underline/underline.component';
 import { AboutComponent } from './about/about.component';
 import { RouterlinkComponent } from './header/routerlink/routerlink.component';
+import { SwitchComponent } from './switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RouterlinkComponent } from './header/routerlink/routerlink.component';
     UnderlineComponent,
     AboutComponent,
     RouterlinkComponent,
+    SwitchComponent,
   ],
   imports: [
     BrowserModule,

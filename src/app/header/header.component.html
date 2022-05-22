@@ -5,23 +5,21 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto ">
       <app-routerlink name="Home" link="/home"></app-routerlink>
       <app-routerlink name="Über mich" link="/about"></app-routerlink>
       <app-routerlink name="Sudoku" link="/sudoku"></app-routerlink>
 
-      <!--<li class="nav-item" [class.active]="route.isActive('/chess', false)">
-        <a class="nav-link" href="chess">Chess</a>
-      </li>-->
-      <!--<li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>-->
     </ul>
+
     <!--<form class="form-inline mt-2 mt-md-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>-->
     <ul class="navbar-nav ml-md-auto right">
+      <li class="nav-item right" style="align-self: center">
+        <app-switch class="modeSwitch" [(checked)]="checked" (checkedChange)="SwitchChanged($event)"></app-switch>
+      </li>
       <li class="nav-item">
         <a class="icon" href="https://github.com/fabiastisch" target="_blank">
           <svg class="github" contentScriptType="text/ecmascript" contentStyleType="text/css"
