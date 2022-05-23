@@ -27,6 +27,7 @@
 body.light{
   --main-color : #090909;
   --background-color : #dddddd;
+  --acent: #00008a;
 
   --activeColor: #5050ff;
   --highlightLightColor: #c0c0c0;
@@ -41,6 +42,8 @@ body.light{
 body.dark{
   --main-color : white;
   --background-color : #222222;
+  --acent: #009eff;
+
 
   --activeColor: #4e9ae5;
   --highlightLightColor: #4d4d4d;
@@ -54,3 +57,10 @@ body.dark{
 
 }
 
+app-underline.link{
+  color: var(--acent);
+}
+a.link{
+  color: var(--acent);
+  text-decoration: none;
+}

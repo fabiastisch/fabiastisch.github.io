@@ -8,7 +8,10 @@ export class TimePipe implements PipeTransform {
   transform(value: unknown, ...args: unknown[]): unknown {
     if (value == null || value === '' || value !== value) return null;
     let time = ''
-    let seconds = parseInt(String(value), 10);
+    let ms = parseInt(String(value), 10);
+    let seconds = Math.floor(ms / 1000);
+    ms -= seconds * 1000;
+    //let seconds = parseInt(String(value), 10);
     let minutes = Math.floor(seconds / 60);
     seconds -= minutes * 60;
     let hours = Math.floor(minutes / 60);
@@ -24,9 +27,12 @@ export class TimePipe implements PipeTransform {
     if (minutes > 0) {
       time += minutes + ' Minutes ';
     }
-    if (seconds > 0) {
-      time += seconds + ' Seconds';
+    if (seconds >= 0) {
+      time += seconds + ' Seconds ';
     }
+    /*if (ms > 0) {
+      time += ms + ' ms';
+    }*/
 
     return time;
   }

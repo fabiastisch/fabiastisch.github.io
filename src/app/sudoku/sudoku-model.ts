@@ -29,7 +29,6 @@ export class SudokuModel extends Array<Array<Cell>> {
   public isSolved = () => this.every(row => row.every(cell => cell.value === cell.solution));
 
   constructor(obj: { sudoku: number[][], solvedSudoku?: number[][] }) {
-    console.warn('CONSTRUCTOR')
     super();
     if (!obj.sudoku) return;
     obj.sudoku.forEach((row, rowIndex) => {

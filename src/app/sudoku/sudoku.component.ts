@@ -1,8 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {Cell, SudokuModel} from './sudoku-model';
-import {Moment} from 'moment';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import * as moment from 'moment';
 import {SudokuUtils} from '../util/sudoku-utils';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {TimePipe} from "../time.pipe";
@@ -16,7 +14,9 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   public sudoku: SudokuModel | undefined;
   private selectedCell: Cell | undefined;
   //solvingSpeed: number;
-  private startTime: Moment | undefined;
+
+  start: number = 0;
+  public duration: number = 0;
 
   private modal: NgbModalRef | undefined;
   // @ts-ignore
@@ -27,8 +27,15 @@ export class SudokuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.restore();
-    if (!this.sudoku) this.newSudoku();
-    this.startTime = moment();
+    if (!this.sudoku) {
+      this.newSudoku();
+      this.start = performance.now();
+
+    }
+    window.setInterval(()=>{
+      this.duration = performance.now() - this.start;
+    }, 100);
+
     // @ts-ignore
     this.height = document.getElementById('display').offsetWidth + 'px';
   }
@@ -46,7 +53,7 @@ export class SudokuComponent implements OnInit, AfterViewInit {
 
   public newSudoku(): void {
     this.sudoku = new SudokuModel(SudokuUtils.getSudoku());
-    this.startTime = moment();
+    this.start = performance.now();
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -161,9 +168,9 @@ export class SudokuComponent implements OnInit, AfterViewInit {
 
     if (this.sudoku.isSolved()) {
       if (this.modal) this.modal.close();
-      let seconds: number = moment().diff(this.startTime, 'seconds', false);
+      let duration = performance.now() - this.start;
       this.modal = this.modalService.open(ModalContentComponent);
-      this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + this.timePipe.transform(seconds);
+      this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + this.timePipe.transform(duration);
     }
     this.save()
   }
@@ -179,6 +186,8 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     });
     let solvedSudoku = this.sudoku.solved;
     localStorage.setItem('user-current-sudoku', JSON.stringify({sudoku, solvedSudoku}));
+    localStorage.setItem('user-current-sudoku-time', JSON.stringify(performance.now() - this.start));
+
   }
 
   restore(): void {
@@ -186,8 +195,8 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     if (sudoku) {
       console.log(JSON.parse(sudoku))
       this.sudoku = new SudokuModel(JSON.parse(sudoku));
-      //this.sudoku = new SudokuModel(JSON.parse(sudokuString));
+      const storage = localStorage.getItem('user-current-sudoku-time') || '';
+      this.start = performance.now() - parseFloat(storage);
     }
-    console.log(this.sudoku)
   }
 }

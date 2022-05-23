@@ -2,6 +2,7 @@
   <h1> Sudoku </h1>
 </div>
 
+
 <div class="center my-3">
   <button type="button" class="btn btn-primary mx-3" (click)="this.solve()">Solve</button>
   <button type="button" class="btn btn-primary mx-3" (click)="this.newSudoku()"> New Sudoku</button>
@@ -27,4 +28,8 @@
       <div class="value">{{cell.value}}</div>
     </div>
   </div>
+</div>
+
+<div class="center bottom">
+  <div class="timer">{{duration | time}}</div>
 </div>

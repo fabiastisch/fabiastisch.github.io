@@ -8,7 +8,7 @@
 :host:after{
   display:block;
   content: '';
-  border-bottom: solid 1px var(--main-color, white);
+  border-bottom: solid 1px currentColor;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
   transform-origin:100% 50%
