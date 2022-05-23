@@ -23,10 +23,11 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   height: any = '500px';
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private modalService: NgbModal, private timePipe: TimePipe) {
-    this.newSudoku();
   }
 
   ngOnInit(): void {
+    this.restore();
+    if (!this.sudoku) this.newSudoku();
     this.startTime = moment();
     // @ts-ignore
     this.height = document.getElementById('display').offsetWidth + 'px';
@@ -35,6 +36,7 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
 
   }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: { target: { innerWidth: any; }; }) {
     // @ts-ignore
@@ -158,10 +160,34 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     if (this.sudoku == undefined) return;
 
     if (this.sudoku.isSolved()) {
-      if (this.modal)this.modal.close();
-      let seconds:number = moment().diff(this.startTime, 'seconds', false);
+      if (this.modal) this.modal.close();
+      let seconds: number = moment().diff(this.startTime, 'seconds', false);
       this.modal = this.modalService.open(ModalContentComponent);
       this.modal.componentInstance.headerText = 'Success!  \nSolved in ' + this.timePipe.transform(seconds);
     }
+    this.save()
+  }
+
+  save(): void {
+    if (!this.sudoku) return;
+
+    let sudoku: Array<Array<number | undefined>> = []
+    this.sudoku.forEach(value => {
+      let row: Array<number | undefined> = []
+      value.forEach(value1 => row.push(value1.value))
+      sudoku.push(row);
+    });
+    let solvedSudoku = this.sudoku.solved;
+    localStorage.setItem('user-current-sudoku', JSON.stringify({sudoku, solvedSudoku}));
+  }
+
+  restore(): void {
+    let sudoku = localStorage.getItem('user-current-sudoku');
+    if (sudoku) {
+      console.log(JSON.parse(sudoku))
+      this.sudoku = new SudokuModel(JSON.parse(sudoku));
+      //this.sudoku = new SudokuModel(JSON.parse(sudokuString));
+    }
+    console.log(this.sudoku)
   }
 }

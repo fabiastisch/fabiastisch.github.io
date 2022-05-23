@@ -2,6 +2,7 @@ import {arrayStartAtZero, getRandomInt, shuffleArray, transpose} from './utils-m
 import List from './algorithm-x/list';
 import {Metadata} from './algorithm-x/model';
 import {initializeCircularDoublyLinkedToroidaList, initializeColumnLabels, search} from './algorithm-x/core';
+import {SudokuModel} from "../sudoku/sudoku-model";
 
 
 export class SudokuUtils {
