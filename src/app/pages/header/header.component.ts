@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {Theme, ThemeService} from "../theme.service";
+import {Theme, ThemeService} from "../../theme.service";
 
 @Component({
   selector: 'app-header',
