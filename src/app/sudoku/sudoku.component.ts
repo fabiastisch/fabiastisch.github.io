@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {Cell, SudokuModel} from './sudoku-model';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {SudokuUtils} from '../util/sudoku-utils';
+import {SudokuUtils} from '../util-functions/sudoku-utils';
 import {ModalContentComponent} from '../modal-content/modal-content.component';
 import {TimePipe} from "../time.pipe";
 
