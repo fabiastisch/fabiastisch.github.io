@@ -119,5 +119,7 @@
       }
     }
   },
-  "defaultProject": "Fabiastisch"
+  "cli": {
+    "analytics": false
+  }
 }

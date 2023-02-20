@@ -4,16 +4,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
-import {HeaderComponent} from "./header/header.component";
-import {HomeComponent} from "./home/home.component";
+import {HeaderComponent} from "./pages/header/header.component";
+import {HomeComponent} from "./pages/home/home.component";
 import {SudokuComponent} from "./sudoku/sudoku.component";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {UnderlineComponent} from './underline/underline.component';
-import {AboutComponent} from './about/about.component';
-import {RouterlinkComponent} from './header/routerlink/routerlink.component';
-import {SwitchComponent} from './switch/switch.component';
+import {AboutComponent} from './pages/about/about.component';
+import {RouterlinkComponent} from './pages/header/routerlink/routerlink.component';
 import {TimePipe} from './time.pipe';
+import {UtilsModule} from "./utils/utils.module";
 
 @NgModule({
   declarations: [
@@ -21,10 +20,8 @@ import {TimePipe} from './time.pipe';
     SudokuComponent,
     HeaderComponent,
     HomeComponent,
-    UnderlineComponent,
     AboutComponent,
     RouterlinkComponent,
-    SwitchComponent,
     TimePipe
   ],
   imports: [
@@ -33,6 +30,7 @@ import {TimePipe} from './time.pipe';
     AppRoutingModule,
     FormsModule,
     NgbModule,
+    UtilsModule,
   ],
   providers: [
     TimePipe
