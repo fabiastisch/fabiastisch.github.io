@@ -1,0 +1,33 @@
+<div class="center my-3">
+  <button type="button" class="btn btn-primary mx-3" (click)="this.newSudoku()"> New Sudoku</button>
+  <div>
+    <p>Delay: {{delayTime}} </p>
+  </div>
+  <input type="range" min="50" max="3000" [value]="delayTime" (input)="setDelayTime($event)">
+
+
+</div>
+
+<div class="display" id="display" [style.height]="height">
+  <div class="row" *ngFor="let row of sudoku; index as rowI"
+  >
+
+    <div class="cell" *ngFor="let cell of row; index as colI"
+         [class.top]="rowI % 3 == 0"
+         [class.bot]="rowI % 3 == 2"
+         [class.left]="colI % 3 == 0"
+         [class.right]="colI % 3 == 2"
+         [class.active]=cell.isActive
+         [class.highlightLight]=cell.highlightLight
+         [class.highlightHard]=cell.highlightHard
+         [class.isWrong]=cell.isWrong
+         [class.isCorrect]=cell.isCorrect
+         [class.readonly]=cell.readonly
+         [class.correct]="cell.solution === cell.value && !cell.readonly"
+         [class.false]="cell.solution !== cell.value && !cell.readonly"
+    >
+
+      <div class="value">{{cell.value}}</div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,8 @@ import {arrayStartAtZero, getRandomInt, shuffleArray, transpose} from './utils-m
 import List from './algorithm-x/list';
 import {Metadata} from './algorithm-x/model';
 import {initializeCircularDoublyLinkedToroidaList, initializeColumnLabels, search} from './algorithm-x/core';
-import {SudokuModel} from "../sudoku/sudoku-model";
+import {SudokuModel} from "../pages/sudoku/sudoku-model";
+import waitTime from "./time";
 
 
 export class SudokuUtils {
@@ -241,6 +242,50 @@ export class SudokuUtils {
   static getSolutionCount(grid: number[][]): number {
     const solution = SudokuUtils.solver(SudokuUtils.parseCells(grid));
     return [...solution].length;
+  }
+
+
+  static async getSudokuAsync(delayTime:number,param: (sudoku: any, change?: { col: any; row: any }, success?: boolean) => void) {
+    const delay = (time: number) => {
+      return new Promise(resolve => setTimeout(resolve, time));
+    }
+    let s = SudokuUtils.generateFullSudoku();
+    param(s)
+    await delay(delayTime*1)
+    const sudoku = SudokuUtils.shuffleSudoku(s);
+    param(sudoku)
+    await delay(delayTime*2)
+    const solvedSudoku = JSON.parse(JSON.stringify(sudoku));
+    const random = () => shuffleArray(arrayStartAtZero(SudokuUtils.SIZE));
+    let emptyFields = 0;
+    for (const row of random()) {
+      for (const col of random()) {
+        const temp = sudoku[col][row];
+        if (temp === -1) {
+          continue;
+        }
+        sudoku[col][row] = -1;
+
+        const solutionCount = SudokuUtils.getSolutionCount(sudoku);
+        param(sudoku, {col, row})
+        await delay(delayTime)
+        // backtrack
+        if (solutionCount > 1) {
+          param(sudoku, {col, row}, false);
+          await delay(delayTime)
+
+          sudoku[col][row] = temp;
+        } else {
+          param(sudoku, {col, row}, true);
+          await delay(delayTime)
+
+
+          emptyFields++;
+        }
+      }
+    }
+
+    return {sudoku, solvedSudoku};
   }
 }
 
