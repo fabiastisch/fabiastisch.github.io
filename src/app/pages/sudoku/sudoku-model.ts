@@ -8,6 +8,8 @@ export class Cell {
   solution: number | undefined;
   row: number;
   col: number;
+  isCorrect?: boolean = false
+  isWrong?: boolean = false;
 
   constructor(value: number, row: number, col: number) {
     this.row = row;
@@ -38,6 +40,7 @@ export class SudokuModel extends Array<Array<Cell>> {
       });
       this.push(rowData);
     });
+    if (!obj.solvedSudoku) return;
     this.solved = obj.solvedSudoku;
     // @ts-ignore
     obj.solvedSudoku.forEach((row, rowindex) => {
@@ -47,4 +50,10 @@ export class SudokuModel extends Array<Array<Cell>> {
       });
     });
   }
+
+  static GenerateEmpty(): SudokuModel {
+    let model: number[][] = [...Array(9)].map(x => Array(9).fill(-1));
+    return new SudokuModel({sudoku: model});
+  }
+
 }

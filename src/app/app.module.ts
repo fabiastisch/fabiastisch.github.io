@@ -6,13 +6,14 @@ import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {HeaderComponent} from "./pages/header/header.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {SudokuComponent} from "./sudoku/sudoku.component";
+import {SudokuComponent} from "./pages/sudoku/sudoku.component";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AboutComponent} from './pages/about/about.component';
 import {RouterlinkComponent} from './pages/header/routerlink/routerlink.component';
 import {TimePipe} from './time.pipe';
 import {UtilsModule} from "./utils/utils.module";
+import { SudokuGenerationVisualisationComponent } from './pages/sudoku-generation-visualisation/sudoku-generation-visualisation.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +23,17 @@ import {UtilsModule} from "./utils/utils.module";
     HomeComponent,
     AboutComponent,
     RouterlinkComponent,
-    TimePipe
+    TimePipe,
+    SudokuGenerationVisualisationComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    FormsModule,
-    NgbModule,
-    UtilsModule,
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        AppRoutingModule,
+        FormsModule,
+        NgbModule,
+        UtilsModule,
+    ],
   providers: [
     TimePipe
   ],
