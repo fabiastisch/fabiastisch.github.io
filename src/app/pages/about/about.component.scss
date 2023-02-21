@@ -8,6 +8,12 @@
 .about {
   flex: 1 1 auto;
 }
+.socials{
+  flex: 1 1 auto;
+  >*{
+    margin: 0.5em;
+  }
+}
 
 img {
   width: 90%;
